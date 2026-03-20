@@ -1,7 +1,0 @@
-{
-  "name": "translator",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Claude Code plugin packaging for a glossary-backed multi-language translation skill.",
-  "license": "MIT"
-}

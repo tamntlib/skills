@@ -1,7 +1,7 @@
 {
-  "name": "translator",
-  "version": "1.4.0",
-  "description": "Claude Code skill for translating from one source language into one or more target languages with stable proper-noun glossary memory.",
+  "name": "tamnt-skills",
+  "version": "1.0.0",
+  "description": "Marketplace for Claude Code translation and productivity skills published by tamnt.",
   "author": {
     "name": "tamnt"
   },
@@ -12,5 +12,6 @@
     "localization",
     "glossary",
     "skills"
-  ]
+  ],
+  "skills": "skills/"
 }

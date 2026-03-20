@@ -1,10 +1,10 @@
-# translator
+# tamnt-skills
 
-Claude Code plugin that adds a glossary-backed translation skill for one source language and one or more target languages.
+Claude Code marketplace repository for installable skills published by tamnt.
 
-## Install
+## Install from GitHub
 
-Install from GitHub:
+Add this marketplace, then install the plugin you want:
 
 ```bash
 claude plugin marketplace add tamntlib/skills
@@ -17,50 +17,31 @@ Reload plugins in an active Claude Code session:
 /reload-plugins
 ```
 
-## Use
+## Install as a repo-local skill
 
-Invoke the skill by name:
+If your team prefers repo-local skills instead of plugin installation, copy the skill into your project like this:
 
 ```text
-/translator:translator
+your-project/
+  .claude/
+    skills/
+      translator/
+        SKILL.md
 ```
 
-Examples:
-- Translate from Japanese to Vietnamese while keeping names stable
-- Translate from Japanese to Vietnamese and English in one request
-- Translate from Vietnamese to Japanese using previous glossary choices
-- Translate from English to French and German while keeping target outputs separate
+Then reload plugins in Claude Code:
 
-If the source language or target languages are not clear, the skill should ask once.
+```text
+/reload-plugins
+```
 
-## Glossary behavior
+## Included plugins
 
-The glossary starts empty and is stored in the working folder at:
-
-- `./proper-nouns.tsv`
-
-The file is created automatically only when the first new proper noun or preferred rendering needs to be remembered.
-
-Glossary schema:
-- one dynamic column per language code, such as `ja`, `en`, `vi`, `fr`
-- fixed trailing columns:
-  - `type`
-  - `notes`
-
-Each row is one multilingual entity record. New languages are added as new columns over time.
-
-Because the file lives in the working folder, you can commit it to git if you want shared project terminology.
-
-If you want one glossary per repository, run Claude from the repo root so the skill uses one repo-local `./proper-nouns.tsv` file.
-
-## Output behavior
-
-- Single target: returns only the translated text by default
-- Multiple targets: returns labeled sections in the order requested, such as `## vi` and `## en`
+- [`translator`](skills/translator/README.md) — translate from one source language into one or more target languages with stable proper-noun glossary memory
 
 ## Development
 
-Validate the plugin:
+Validate the plugin marketplace:
 
 ```bash
 claude plugin validate .
