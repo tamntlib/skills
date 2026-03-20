@@ -1,0 +1,16 @@
+{
+  "name": "tamnt-skills",
+  "owner": {
+    "name": "tamnt"
+  },
+  "metadata": {
+    "description": "Marketplace for Claude Code translation and productivity skills published by tamnt."
+  },
+  "plugins": [
+    {
+      "name": "translator",
+      "source": "./",
+      "description": "Translation skill for one source language to one or more target languages with stable proper-noun glossary memory."
+    }
+  ]
+}

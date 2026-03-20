@@ -1,0 +1,16 @@
+{
+  "name": "translator",
+  "version": "1.4.0",
+  "description": "Claude Code skill for translating from one source language into one or more target languages with stable proper-noun glossary memory.",
+  "author": {
+    "name": "tamnt"
+  },
+  "license": "MIT",
+  "keywords": [
+    "translation",
+    "multilingual",
+    "localization",
+    "glossary",
+    "skills"
+  ]
+}

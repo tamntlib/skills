@@ -1,0 +1,89 @@
+# translator
+
+Claude Code plugin that adds a glossary-backed translation skill for one source language and one or more target languages.
+
+## Install
+
+### Install from a local checkout
+
+Before installing, add this repo as a marketplace:
+
+```bash
+claude plugin marketplace add /absolute/path/to/skills
+```
+
+Then install the plugin:
+
+```bash
+claude plugin install translator@tamnt-skills --scope user
+```
+
+Reload plugins in an active Claude Code session:
+
+```text
+/reload-plugins
+```
+
+### Install from a git-hosted marketplace
+
+Once this repository is published to GitHub or another supported git host, users can add the marketplace and install the plugin with Claude Code commands:
+
+```bash
+claude plugin marketplace add <owner>/<repo>
+claude plugin install translator@tamnt-skills --scope user
+```
+
+## Use
+
+Invoke the skill by name:
+
+```text
+/translator:translator
+```
+
+Examples:
+- Translate from Japanese to Vietnamese while keeping names stable
+- Translate from Japanese to Vietnamese and English in one request
+- Translate from Vietnamese to Japanese using previous glossary choices
+- Translate from English to French and German while keeping target outputs separate
+
+If the source language or target languages are not clear, the skill should ask once.
+
+## Glossary behavior
+
+The glossary starts empty and is stored in the working folder at:
+
+- `./proper-nouns.tsv`
+
+The file is created automatically only when the first new proper noun or preferred rendering needs to be remembered.
+
+Glossary schema:
+- one dynamic column per language code, such as `ja`, `en`, `vi`, `fr`
+- fixed trailing columns:
+  - `type`
+  - `notes`
+
+Each row is one multilingual entity record. New languages are added as new columns over time.
+
+Because the file lives in the working folder, you can commit it to git if you want shared project terminology.
+
+If you want one glossary per repository, run Claude from the repo root so the skill uses one repo-local `./proper-nouns.tsv` file.
+
+## Output behavior
+
+- Single target: returns only the translated text by default
+- Multiple targets: returns labeled sections in the order requested, such as `## vi` and `## en`
+
+## Development
+
+Validate the plugin:
+
+```bash
+claude plugin validate .
+```
+
+Load it directly during development:
+
+```bash
+claude --plugin-dir .
+```
