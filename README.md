@@ -4,17 +4,10 @@ Claude Code plugin that adds a glossary-backed translation skill for one source 
 
 ## Install
 
-### Install from a local checkout
-
-Before installing, add this repo as a marketplace:
+Install from GitHub:
 
 ```bash
-claude plugin marketplace add /absolute/path/to/skills
-```
-
-Then install the plugin:
-
-```bash
+claude plugin marketplace add tamntlib/skills
 claude plugin install translator@tamnt-skills --scope user
 ```
 
@@ -22,15 +15,6 @@ Reload plugins in an active Claude Code session:
 
 ```text
 /reload-plugins
-```
-
-### Install from a git-hosted marketplace
-
-Once this repository is published to GitHub or another supported git host, users can add the marketplace and install the plugin with Claude Code commands:
-
-```bash
-claude plugin marketplace add <owner>/<repo>
-claude plugin install translator@tamnt-skills --scope user
 ```
 
 ## Use
