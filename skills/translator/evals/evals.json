@@ -4,31 +4,31 @@
     {
       "id": 1,
       "prompt": "Translate from Japanese to Vietnamese and keep names consistent: `PhoenixチームはAsteria Pulse Reviewのレビューを3月21日に開始します。高橋美咲さんが司会します。`",
-      "expected_output": "Vietnamese translation only. If a new proper noun must be remembered and no glossary exists yet, create `./proper-nouns.tsv` in the working folder with dynamic language-code columns and trailing `type` and `notes` columns.",
+      "expected_output": "Vietnamese translation only. If a new proper noun or special term must be remembered and no glossary exists yet, create `./translator-glossary.tsv` in the working folder with dynamic language-code columns and trailing `type` and `notes` columns.",
       "files": []
     },
     {
       "id": 2,
       "prompt": "Translate from Japanese to Vietnamese and English: `PhoenixチームはAsteria Pulse Reviewの検証を開始しました。`",
-      "expected_output": "A multi-target response with separate vi and en sections, preserving target order and keeping proper nouns consistent within each target output. If new terms are learned, persist them in `./proper-nouns.tsv` as one shared multilingual row per entity rather than separate directional rows.",
+      "expected_output": "A multi-target response with separate vi and en sections, preserving target order and keeping proper nouns or special terms consistent within each target output. If new terms are learned, persist them in `./translator-glossary.tsv` as one shared multilingual row per glossary item rather than separate directional rows.",
       "files": []
     },
     {
       "id": 3,
       "prompt": "Translate from English to French and German and remember a canonical rendering for this product name going forward: `Nebula Garden OS rollout starts tomorrow for the Phoenix team.`",
-      "expected_output": "A multi-target response that creates or updates one multilingual row per entity in `./proper-nouns.tsv`, populating `en`, `fr`, and `de` cells plus `type` and `notes` as needed.",
+      "expected_output": "A multi-target response that creates or updates one multilingual row per glossary item in `./translator-glossary.tsv`, populating `en`, `fr`, and `de` cells plus `type` and `notes` as needed.",
       "files": []
     },
     {
       "id": 4,
       "prompt": "Later, translate from English to Italian: `Nebula Garden OS specification is ready.` Keep previous preferences.",
-      "expected_output": "If the entity already exists in the repo-local glossary, extend the existing row by adding an `it` column before `type` and `notes` instead of creating a duplicate row.",
+      "expected_output": "If the glossary item already exists in the repo-local glossary, extend the existing row by adding an `it` column before `type` and `notes` instead of creating a duplicate row.",
       "files": []
     },
     {
       "id": 5,
       "prompt": "For future German translation, use `Nebelgarten OS` as the preferred German name for `Nebula Garden OS`. Translate from English to German and French: `Nebula Garden OS specification is ready.`",
-      "expected_output": "A multi-target response where the explicit German override updates only the `de` cell for the matched row in `./proper-nouns.tsv` and does not overwrite the French rendering in the `fr` cell.",
+      "expected_output": "A multi-target response where the explicit German override updates only the `de` cell for the matched row in `./translator-glossary.tsv` and does not overwrite the French rendering in the `fr` cell.",
       "files": []
     },
     {
