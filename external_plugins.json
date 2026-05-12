@@ -1,0 +1,20 @@
+[
+  {
+    "marketplace": "anthropics/skills",
+    "plugins": [
+      "document-skills"
+    ]
+  },
+  {
+    "marketplace": "obra/superpowers",
+    "ref": "v5.1.0"
+  },
+  "astral-sh/claude-code-plugins",
+  "nextlevelbuilder/ui-ux-pro-max-skill",
+  {
+    "marketplace": "anthropics/claude-code",
+    "plugins": [
+      "frontend-design"
+    ]
+  }
+]

@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "tamnt-skills",
   "owner": {
     "name": "tamnt",
@@ -15,6 +16,93 @@
       "description": "Translation skill for one source language to one or more target languages with stable proper-noun glossary memory.",
       "skills": [
         "./skills/translator"
+      ]
+    },
+    {
+      "name": "document-skills",
+      "description": "Collection of document processing suite including Excel, Word, PowerPoint, and PDF capabilities",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./external_plugins/anthropics/skills/skills/xlsx",
+        "./external_plugins/anthropics/skills/skills/docx",
+        "./external_plugins/anthropics/skills/skills/pptx",
+        "./external_plugins/anthropics/skills/skills/pdf"
+      ]
+    },
+    {
+      "name": "superpowers",
+      "description": "Core skills library for Claude Code: TDD, debugging, collaboration patterns, and proven techniques",
+      "version": "5.1.0",
+      "source": "./",
+      "author": {
+        "name": "Jesse Vincent",
+        "email": "jesse@fsck.com"
+      },
+      "skills": [
+        "./external_plugins/obra/superpowers/skills/brainstorming",
+        "./external_plugins/obra/superpowers/skills/dispatching-parallel-agents",
+        "./external_plugins/obra/superpowers/skills/executing-plans",
+        "./external_plugins/obra/superpowers/skills/finishing-a-development-branch",
+        "./external_plugins/obra/superpowers/skills/receiving-code-review",
+        "./external_plugins/obra/superpowers/skills/requesting-code-review",
+        "./external_plugins/obra/superpowers/skills/subagent-driven-development",
+        "./external_plugins/obra/superpowers/skills/systematic-debugging",
+        "./external_plugins/obra/superpowers/skills/test-driven-development",
+        "./external_plugins/obra/superpowers/skills/using-git-worktrees",
+        "./external_plugins/obra/superpowers/skills/using-superpowers",
+        "./external_plugins/obra/superpowers/skills/verification-before-completion",
+        "./external_plugins/obra/superpowers/skills/writing-plans",
+        "./external_plugins/obra/superpowers/skills/writing-skills"
+      ]
+    },
+    {
+      "name": "astral",
+      "source": "./",
+      "description": "Skills for working with Python using Astral tools.",
+      "skills": [
+        "./external_plugins/astral-sh/claude-code-plugins/skills/ruff",
+        "./external_plugins/astral-sh/claude-code-plugins/skills/ty",
+        "./external_plugins/astral-sh/claude-code-plugins/skills/uv"
+      ]
+    },
+    {
+      "name": "ui-ux-pro-max",
+      "source": "./",
+      "description": "Professional UI/UX design intelligence for AI coding assistants. Includes searchable databases of styles, colors, typography, charts, and UX guidelines for React, Next.js, Astro, Vue, Nuxt.js, Nuxt UI, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui, and Jetpack Compose.",
+      "version": "2.2.1",
+      "author": {
+        "name": "nextlevelbuilder"
+      },
+      "keywords": [
+        "ui",
+        "ux",
+        "design",
+        "styles",
+        "typography",
+        "color-palette",
+        "accessibility",
+        "charts",
+        "components"
+      ],
+      "category": "design",
+      "strict": false,
+      "skills": [
+        "./external_plugins/nextlevelbuilder/ui-ux-pro-max-skill/skills/ui-ux-pro-max"
+      ]
+    },
+    {
+      "name": "frontend-design",
+      "description": "Create distinctive, production-grade frontend interfaces with high design quality. Generates creative, polished code that avoids generic AI aesthetics.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Prithvi Rajasekaran & Alexander Bricken",
+        "email": "prithvi@anthropic.com"
+      },
+      "source": "./",
+      "category": "development",
+      "skills": [
+        "./external_plugins/anthropics/claude-code/skills/frontend-design"
       ]
     }
   ]
