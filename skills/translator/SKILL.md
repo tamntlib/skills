@@ -48,6 +48,16 @@ Use this workflow when the user asks to:
 
 ## Workflow
 
+### Source, incrementality, and performance rules
+
+- Translate from the current source content the user named. Do not fetch, restore, or use a target-language file from Git history, `HEAD`, or another previous version as the translation baseline unless the user explicitly asks to restore, compare, or reuse that prior version.
+- If a target file already exists, use it only as an optional reference when the user asked for reuse or comparison. Otherwise, produce the target from the current source.
+- Do not retranslate an entire file when the source changed only in part. Prefer an incremental workflow: extract stable text units, reuse exact existing translations from approved translation memory/cache or unchanged source units, translate only new or changed source units, then apply the merged mapping back to the document.
+- For structured files such as HTML, Markdown tables, spreadsheets, slides, and extracted fragments, count human-visible source text before deciding whether to split work. Only split into chunks when there are more than 50k visible source characters after deduplication or when one model response cannot safely hold the mapping.
+- Treat the 50k deduplicated visible-character threshold as a hard execution gate. If the count is at or below 50k, do the main translation pass single-pass in the current session. Do not use chunking, chunk workers, or subagents for the main translation mapping just for convenience, speed, or to avoid a long mapping; worker/subagent startup is part of the chunking workflow this rule is meant to prevent for medium files.
+- When chunking is necessary, each subagent or chunk worker must write its translated mapping directly to a specified output file such as `vi_chunk_N.tsv`; do not ask workers to return long TSVs in chat and then do a second pass to save them.
+- Prefer fewer, larger chunks over many small chunks. Chunking is for capacity, not for routine speed, because worker startup and coordination overhead can be slower than a single-pass translation for medium files.
+
 ### 1. Resolve the source language and target languages
 
 Detect whether the request clearly specifies:
@@ -176,6 +186,12 @@ If there is a serious ambiguity, keep the note short and specific.
 - If the user gives one input file, write the translated output to `<parent-dir-of-input-file>/<translated_language_code>/<original-file-name>` unless the user explicitly asks for a different output location or filename.
 - If the user gives one input folder, find all text files in that folder tree such as Markdown files, translate them, and write outputs to `<target-dir>/<translated_language_code>/<relative-path-from-input-folder>/<original-file-name>`. If `target-dir` is not explicitly specified, use the input folder as the target dir root.
 - When translating a folder tree, preserve the original relative subdirectory structure under `<translated_language_code>/`.
+- After translating structured documents (HTML, Markdown tables, spreadsheets, slides, extracted fragments), run a language-agnostic token-boundary QA pass before completion:
+  - Preserve markup/structure; inspect only human-visible text.
+  - Catch glued or missing-separator boundaries between translated fragments, inline runs, glossary terms, acronyms, names, numbers, units, formulas, punctuation, CJK/Latin text, and technical/domain terms.
+  - Fix only when the target language normally requires separation; do not add spaces blindly for scripts/languages that do not.
+  - For folder translations, scan every generated file, including auxiliary and non-indexed outputs.
+  - If unsure, report a possible boundary artifact instead of silently rewriting it.
 
 ## Conflict handling
 
